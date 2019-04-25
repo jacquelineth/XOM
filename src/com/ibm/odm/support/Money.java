@@ -37,11 +37,10 @@ public class Money implements Serializable {
 	public Money() {
 		super();
 		this.value= new BigDecimal(BigInteger.ZERO,2);
-		System.out.println("Money.Money() called");
 	}
 
 	public Money( Money m) {
-		super();
+		this();
 		this.value= m.getValue();	
 	}
 	 
