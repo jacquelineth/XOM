@@ -8,7 +8,8 @@ import java.math.BigInteger;
 
 public class Money implements Serializable {
 
-	 /**
+	 public static final int MONEY_UNIT = 2;
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8977175805707513871L;
@@ -36,7 +37,7 @@ public class Money implements Serializable {
 	 */
 	public Money() {
 		super();
-		this.value= new BigDecimal(BigInteger.ZERO,2);
+		this.value= new BigDecimal(BigInteger.ZERO,Money.MONEY_UNIT);
 	}
 
 	public Money( Money m) {
@@ -47,6 +48,7 @@ public class Money implements Serializable {
 	public void setScale (int scale) {
 		this.value.setScale(scale);
 		System.out.println("setScale to "+scale );
+		java.lang.Thread.dumpStack();
 	}
 	public int getScale() {
 		return this.value.scale();

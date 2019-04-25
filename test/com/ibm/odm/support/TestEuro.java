@@ -38,9 +38,9 @@ class TestEuro {
 
 	@Test
 	void testDecreasePercent() {
-		Euro euro2 = new Euro(100.0);  
+		Euro euro2 = new Euro(45.0);  
 		euro2.decreasePercent(25.0f);
-		assertEquals(75.0, euro2.getValue().doubleValue());
+		assertEquals(33.75, euro2.getValue().doubleValue());
 	}
 
 

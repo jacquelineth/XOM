@@ -26,11 +26,15 @@ public class Euro extends Money {
 	
 	public void  increasePercent(float f) {
 		
-		this.setValue( this.getValue().multiply(new BigDecimal(1+(f/100.0))));
+		BigDecimal bD= new BigDecimal(1+(f/100.0));
+		bD.setScale(MONEY_UNIT);
+		this.setValue( this.getValue().multiply(bD));
 	}
 	public void  decreasePercent(float f) {
 		
-		this.setValue( this.getValue().multiply(new BigDecimal(1-(f/100.0))));
+		BigDecimal bD= new BigDecimal(1-(f/100.0));
+		bD.setScale(MONEY_UNIT);
+		this.setValue( this.getValue().multiply(bD));
 	}
 
 	public void increase(Euro plus) {
