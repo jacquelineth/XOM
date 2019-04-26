@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import jdk.internal.jline.internal.TestAccessible;
+
 class TestEuro {
 	Euro euro;
 	@BeforeEach
@@ -42,7 +44,15 @@ class TestEuro {
 		euro2.decreasePercent(25.0f);
 		assertEquals(33.75, euro2.getValue().doubleValue());
 	}
-
+	
+	@Test
+	void testCompare() {
+		Euro euro2 = new Euro(45.0);  
+		Euro euro3 = new Euro();  
+		assertEquals(1,Euro.comparator.compare(euro2, euro));
+		assertEquals(0,Euro.comparator.compare(euro3, euro));
+		assertEquals(-1,Euro.comparator.compare(euro3, euro2));
+	}
 
 
 }

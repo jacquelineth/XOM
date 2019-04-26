@@ -19,7 +19,7 @@ public class Euro extends Money {
 		
 		@Override
 		public int compare(Euro o1, Euro o2) {
-			// TODO Auto-generated method stub
+			
 			return o1.getValue().compareTo(o2.getValue());
 		}
 	};
