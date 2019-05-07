@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
  
 
-public class Money implements Serializable {
+public class Money implements Serializable, Comparable<Money>{
 
 	 public static final int MONEY_UNIT = 2;
 	/**
@@ -17,6 +17,7 @@ public class Money implements Serializable {
 
 
 	public BigDecimal getValue() {
+		System.out.println("Money.getValue() "+value);
 		return value;
 	}
 
@@ -52,5 +53,12 @@ public class Money implements Serializable {
 	}
 	public int getScale() {
 		return this.value.scale();
+	}
+
+	@Override
+	public int compareTo(Money o) {
+		int res= this.getValue().compareTo(o.getValue());
+		System.out.println("Money.compareTo()");
+		return res;
 	}
 }

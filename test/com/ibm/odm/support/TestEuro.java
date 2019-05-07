@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import jdk.internal.jline.internal.TestAccessible;
+
 
 class TestEuro {
 	Euro euro;
@@ -34,14 +34,31 @@ class TestEuro {
 	@Test
 	void testIncreasePercent() {
 		Euro euro2 = new Euro(100.0);  
-		euro2.increasePercent(25.0f);
+		euro2.increasePercent(25.0);
 		assertEquals(125.0, euro2.getValue().doubleValue());
+	}
+	@Test
+	void testIncreasePercent15() {
+		Euro euro2 = new Euro(50.0);  
+		euro2.increasePercent(15.0);
+		Euro res = new  Euro (57.50);
+		System.err.println("TestEuro.testIncreasePercent "+euro2);
+		assertEquals(res, euro2);
+	}
+	@Test
+	void testIncreasePercentBD() {
+		Euro euro2 = new Euro(100.0);  
+		euro2.increasePercent(25.0);
+		BigDecimal b=  BigDecimal.valueOf(125.00);b.setScale(2);//BigDecimal.valueOf(125, Money.MONEY_UNIT);
+		System.out.println("TestEuro.testIncreasePercentBD() "+b.scale()+ "  "+b.doubleValue());
+		assertTrue(b.equals(euro2.getValue()));
+		
 	}
 
 	@Test
 	void testDecreasePercent() {
 		Euro euro2 = new Euro(45.0);  
-		euro2.decreasePercent(25.0f);
+		euro2.decreasePercent(25.0);
 		assertEquals(33.75, euro2.getValue().doubleValue());
 	}
 	
