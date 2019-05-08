@@ -41,16 +41,16 @@ class TestEuro {
 	void testIncreasePercent15() {
 		Euro euro2 = new Euro(50.0);  
 		euro2.increasePercent(15.0);
-		Euro res = new  Euro (57.50);
-		System.err.println("TestEuro.testIncreasePercent "+euro2);
+		Euro res = new  Euro (57.50);res.setScale(Euro.MONEY_UNIT);
+//		System.err.println("TestEuro.testIncreasePercent "+euro2 +" ref "+res);
 		assertEquals(res, euro2);
 	}
 	@Test
 	void testIncreasePercentBD() {
 		Euro euro2 = new Euro(100.0);  
 		euro2.increasePercent(25.0);
-		BigDecimal b=  BigDecimal.valueOf(125.00);b.setScale(2);//BigDecimal.valueOf(125, Money.MONEY_UNIT);
-		System.out.println("TestEuro.testIncreasePercentBD() "+b.scale()+ "  "+b.doubleValue());
+		BigDecimal b=  BigDecimal.valueOf(125.00);b=b.setScale(2);//BigDecimal.valueOf(125, Money.MONEY_UNIT);
+//		System.out.println("TestEuro.testIncreasePercentBD() "+b.scale()+ "  "+b.doubleValue());
 		assertTrue(b.equals(euro2.getValue()));
 		
 	}

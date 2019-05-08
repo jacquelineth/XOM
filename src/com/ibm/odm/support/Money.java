@@ -17,16 +17,18 @@ public class Money implements Serializable, Comparable<Money>{
 
 
 	public BigDecimal getValue() {
-		System.out.println("Money.getValue() "+value);
 		return value;
 	}
 
 	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
-
+/**
+ * Transform parameter to a String to ensure that we use java.math.BigDecimal.BigDecimal(String string)
+ * @param d
+ */
 	public void setValue( double d){
-		this.value=new BigDecimal(d);
+		this.value=new BigDecimal(Double.toString(d));
 	} 
 
 	public Money(BigDecimal rvalue) {
@@ -44,12 +46,13 @@ public class Money implements Serializable, Comparable<Money>{
 	public Money( Money m) {
 		this();
 		this.value= m.getValue();	
+		// Should be implicit
+		//this.setScale(m.getScale());
 	}
 	 
 	public void setScale (int scale) {
-		this.value.setScale(scale);
-		System.out.println("setScale to "+scale );
-		java.lang.Thread.dumpStack();
+		this.value=this.value.setScale(scale);
+		//java.lang.Thread.dumpStack();
 	}
 	public int getScale() {
 		return this.value.scale();
@@ -58,7 +61,13 @@ public class Money implements Serializable, Comparable<Money>{
 	@Override
 	public int compareTo(Money o) {
 		int res= this.getValue().compareTo(o.getValue());
-		System.out.println("Money.compareTo()");
 		return res;
+	}
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Money)
+			return value.equals(((Money)o).value);
+
+		return super.equals(o);
 	}
 }
